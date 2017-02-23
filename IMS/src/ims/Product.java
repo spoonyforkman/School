@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Product{
-    private ArrayList<Part> part = new ArrayList<>();
+    private ArrayList<Part> productParts = new ArrayList<>();
     
     private SimpleIntegerProperty productID = new SimpleIntegerProperty();
     private SimpleStringProperty productName = new SimpleStringProperty();
@@ -18,7 +18,7 @@ public class Product{
     private SimpleIntegerProperty productMin = new SimpleIntegerProperty();
     private SimpleIntegerProperty productMax = new SimpleIntegerProperty();
 
-    public Product(int productID, String productName, int productInstock, Double productPrice, int productMin, int productMax, List<Part> parts){
+    public Product(int productID, String productName, int productInstock, Double productPrice, int productMax, int productMin, ArrayList<Part> parts){
         System.out.println("A new Product Object was just created");
         this.productID = new SimpleIntegerProperty(productID);
         this.productName = new SimpleStringProperty(productName);
@@ -26,19 +26,15 @@ public class Product{
         this.productPrice = new SimpleDoubleProperty(productPrice);
         this.productMax = new SimpleIntegerProperty(productMax);
         this.productMin = new SimpleIntegerProperty(productMin);
-        this.part = new ArrayList<>(part);
+        this.productParts = parts;
     }
     
     public Product(){
         this(0,"",0,0d,0,0, new ArrayList<Part>());
     }
-    
-    public ArrayList<Part> getParts() {
-        return part;
-    }
 
     public void setParts(ArrayList<Part> products) {
-        this.part = products;
+        this.productParts = products;
     }
 /**********************************************
     Product ID
@@ -134,30 +130,38 @@ public class Product{
     Product Part
 */  
     public void addPart(Part part){
-        this.part.add(part);
+        this.productParts.add(part);
     }
 
     public boolean removePart(int productIndex){
-        if(productIndex >= part.size()){
+        if(productIndex >= productParts.size()){
             return false;
         }else{
-            part.remove(productIndex);
+            productParts.remove(productIndex);
             return true;
         }
     }
     
+    public ArrayList<Part> getPart() {
+        return productParts;
+    }
+
+    public void setPart(ArrayList<Part> part) {
+        this.productParts = part;
+    }
+    
     public Part lookupPart(int productIndex){
-        if(productIndex >= part.size()){
+        if(productIndex >= productParts.size()){
             return null;
         }else{
-            return part.get(productIndex);
+            return productParts.get(productIndex);
         }
     }
     
     public void updatePart(int productIndex, Part product){
-        if(productIndex >= part.size()){
+        if(productIndex >= productParts.size()){
         }else{
-            part.set(productIndex, product);
+            productParts.set(productIndex, product);
         }
     }
     

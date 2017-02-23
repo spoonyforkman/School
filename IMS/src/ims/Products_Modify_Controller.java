@@ -24,6 +24,7 @@ public class Products_Modify_Controller {
     private int intmodProdPartIndex = -1;
     private Part tempPart, tempProdPart;
     private String tempPartName, tempProdPartName = new String();
+    private ArrayList <Part> tempProductPartList = new ArrayList<>();
     
     
     @FXML
@@ -138,6 +139,7 @@ public class Products_Modify_Controller {
                     System.out.println("The Index for the part selected is " + mainApp.getModPartIndex());
                 }    
             });
+            
             tblParts.setItems(mainApp.partRetList());
 
         /**************************
@@ -157,10 +159,9 @@ public class Products_Modify_Controller {
 
                 }    
             });
-            tblProductParts.setItems(mainApp.getProductPartList());
-            if(!tblProductParts.getItems().isEmpty()){tblProductParts.getItems().clear();}
-     
-        showProductsDetails(this.mainApp.getProductIndex());
+            
+            tblProductParts.setItems(this.mainApp.getProductPartList());
+            showProductsDetails(this.mainApp.getProductIndex());
     }
 
     @FXML
@@ -214,15 +215,19 @@ public class Products_Modify_Controller {
             Double prCost = Double.parseDouble(txtProductPrice.getText());
             int prMax = Integer.parseInt(txtProductMax.getText());
             int prMin = Integer.parseInt(txtProductMin.getText());        
-            List<Part> addedParts = new ArrayList<>();
+            ArrayList<Part> addedParts = new ArrayList<>();
                 for(int i = 0; i<tblProductParts.getItems().size(); i++){
                     addedParts.add(tblProductParts.getItems().get(i));
                 }
 
-            mainApp.prodRetList().add(new Product(
-                    prID, prName, prInv, prCost, prMax, prMin, addedParts
-                    ));
-            
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductID(prID);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductName(prName);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductInstock(prInv);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductPrice(prCost);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductMax(prMax);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setProductMin(prMin);
+            mainApp.prodRetList().get(this.mainApp.getProductIndex()).setPart(addedParts);
+
             Stage stage = (Stage) btnSaveProduct.getScene().getWindow();
             stage.close();
             setMainApp(mainApp);
@@ -304,6 +309,10 @@ public class Products_Modify_Controller {
         System.out.println("Products_Modify_Controller>>(showProductsDetails)Modifying Prod index: " + index);
         
         if(index > -1){
+            
+            this.tempProductPartList = mainApp.prodRetList().get(index).getPart();
+            System.out.println("tempProductPartList Size: " + tempProductPartList.size() +
+                    "\nmainApp PartList size: " + mainApp.prodRetList().get(index).getPart());
             int tempProdID = mainApp.prodRetList().get(index).getProductID();
             String tempProdName = mainApp.prodRetList().get(index).getProductName();
             int tempProdInstock = mainApp.prodRetList().get(index).getProductInstock();
@@ -317,15 +326,22 @@ public class Products_Modify_Controller {
             txtProductPrice.setText(Double.toString(tempProdPrice));
             txtProductMax.setText(Integer.toString(tempProdMax));
             txtProductMin.setText(Integer.toString(tempProdMin));
+            for(Part part: tempProductPartList){
+                mainApp.prodpartRetList().add(part);
+            }
+        
         } else {
+            ArrayList<Part> tempProdParts = new ArrayList<>();
             txtProductID.setText("--EMPTY--");
             txtProductName.setText("--EMPTY--");
             txtProductInventory.setText("--EMPTY--");
             txtProductPrice.setText("--EMPTY--");
             txtProductMax.setText("--EMPTY--");
             txtProductMin.setText("--EMPTY--");
+            tempProdParts.clear();
 
         }
+
     }
 
 }

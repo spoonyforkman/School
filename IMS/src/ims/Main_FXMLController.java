@@ -414,7 +414,7 @@ public class Main_FXMLController {
 
     @FXML
     void DeleteProduct(ActionEvent event) {
-        mainApp.prodRetList().remove(intmodPartIndex);
+        mainApp.prodRetList().remove(mainApp.getProductIndex());
     }
 
     @FXML

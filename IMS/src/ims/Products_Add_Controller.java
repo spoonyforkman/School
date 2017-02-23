@@ -223,7 +223,7 @@ public class Products_Add_Controller {
             Double prCost = Double.parseDouble(txtProductPrice.getText());
             int prMax = Integer.parseInt(txtProductMax.getText());
             int prMin = Integer.parseInt(txtProductMin.getText());        
-            List<Part> addedParts = new ArrayList<>();
+            ArrayList<Part> addedParts = new ArrayList<>();
                 for(int i = 0; i<tblProductParts.getItems().size(); i++){
                     addedParts.add(tblProductParts.getItems().get(i));
                 }

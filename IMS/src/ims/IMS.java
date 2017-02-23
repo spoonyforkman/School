@@ -18,9 +18,9 @@ import javafx.stage.Stage;
  * @author Taylor, Ryan G
  */
 public class IMS extends Application {
-    private ObservableList<Part> partsList = FXCollections.observableArrayList();;
-    private ObservableList<Product> productList = FXCollections.observableArrayList();;
-    private ObservableList<Part> productPartList = FXCollections.observableArrayList();;
+    private ObservableList<Part> partsList = FXCollections.observableArrayList();
+    private ObservableList<Product> productList = FXCollections.observableArrayList();
+    private ObservableList<Part> productPartList = FXCollections.observableArrayList();
     private int modPartIndex, modifiedProductIndex, ProductPartsIndex;
     
     public IMS(){
@@ -33,10 +33,11 @@ public class IMS extends Application {
         ArrayList<Part> tempList = new ArrayList<>();
         ArrayList<Part> tempList2 = new ArrayList<>();
             tempList.add(new Inhouse(1001, "Test Part 2", 12, 7.49d, 100, 5, 109292));
-        productList.add(new Product(100, "Test Product 1",33, 23.85, 3, 100, tempList));
+        productList.add(new Product(100, "Test Product 1",33, 23.85, 100, 3, tempList));
             tempList2.add(new Outsourced(1002, "Test Part 3", 3, 1.62d, 200, 2, 191983));
+            tempList2.add(new Inhouse(1001, "Test Part 2", 12, 7.49d, 100, 5, 109292));
         productList.add(new Product(101, "Test Product 2", 18, 49.56, 100, 0, tempList2));
-
+            System.out.println("IMS_Constructor Mod>> :" + productList.get(1).getPart().size());
     }
     
     public ObservableList<Part> partRetList(){

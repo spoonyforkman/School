@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="paneAddPart" prefHeight="400.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ims.Part_Modify_FXMLController">
+   <children>
+      <Label layoutX="26.0" layoutY="28.0" text="Modify Part">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Group id="PartRadio" fx:id="grpPartSource">
+         <children>
+            <RadioButton fx:id="rdoOutsourced" disable="true" layoutX="257.0" layoutY="32.0" mnemonicParsing="false" onAction="#outsourced" text="Outsourced">
+               <toggleGroup>
+                  <ToggleGroup fx:id="PartRadio" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rdoInHouse" disable="true" layoutX="155.0" layoutY="32.0" mnemonicParsing="false" onAction="#inHouse" selected="true" text="In-House" toggleGroup="$PartRadio" />
+         </children>
+      </Group>
+      <AnchorPane layoutX="13.0" layoutY="102.0">
+         <children>
+            <TextField fx:id="txtModPartName" layoutX="109.0" layoutY="43.0" prefHeight="25.0" prefWidth="244.0" />
+            <TextField fx:id="txtModPartInventory" layoutX="109.0" layoutY="86.0" prefHeight="25.0" prefWidth="244.0" />
+            <TextField fx:id="txtModPartCost" layoutX="109.0" layoutY="127.0" prefHeight="25.0" prefWidth="244.0" />
+            <TextField fx:id="txtModPartMax" layoutX="109.0" layoutY="164.0" prefHeight="25.0" prefWidth="100.0" />
+            <TextField fx:id="txtModPartMin" layoutX="253.0" layoutY="164.0" prefHeight="25.0" prefWidth="100.0" />
+            <TextField fx:id="txtModPartSource" layoutX="109.0" layoutY="205.0" prefHeight="25.0" prefWidth="244.0" />
+            <Label fx:id="lblInventory" layoutX="47.0" layoutY="90.0" text="Inventory" />
+            <Label fx:id="lblID" layoutX="88.0" layoutY="4.0" text="ID" />
+            <Button fx:id="btnSave" defaultButton="true" layoutX="235.0" layoutY="251.0" onAction="#SavePart" text="_Save" />
+            <Label fx:id="lblMin" layoutX="220.0" layoutY="168.0" text="Min" />
+            <Button fx:id="btnCancel" cancelButton="true" layoutX="301.0" layoutY="251.0" onAction="#CloseWindow" text="_Cancel" />
+            <Label fx:id="lblPartSource" layoutY="209.0" text="Machine Number" textAlignment="RIGHT" />
+            <Label fx:id="lblName" layoutX="66.0" layoutY="47.0" text="Name" />
+            <TextField fx:id="txtModPartID" layoutX="109.0" prefHeight="25.0" prefWidth="244.0" />
+            <Label fx:id="lblMax" layoutX="69.0" layoutY="168.0" text="Max" />
+            <Label fx:id="lblPrice" layoutX="39.0" layoutY="131.0" text="Price/Cost" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
